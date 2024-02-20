@@ -1,0 +1,26 @@
+*>****************************************************************
+*> Author:
+*> Date:
+*> Purpose:
+*> Tectonics: cobc
+*>****************************************************************
+IDENTIFICATION DIVISION.
+PROGRAM-ID. REPLACE_PROG.
+DATA DIVISION.
+FILE SECTION.
+WORKING-STORAGE SECTION.
+77 WS-DATA-COMPLETA PIC X(10) VALUES SPACES.
+77 WS-NOVA-DATA PIC X(10) VALUES SPACES.
+PROCEDURE DIVISION.
+MAIN-PROCEDURE.
+     ACCEPT WS-DATA-COMPLETA FROM DATE YYYYMMDD.
+     MOVE WS-DATA-COMPLETA(07:02)  TO WS-NOVA-DATA(01:02).
+     MOVE "/"                      TO WS-NOVA-DATA(03:01).
+     MOVE WS-DATA-COMPLETA(05:02)  TO WS-NOVA-DATA(04:02).
+     MOVE "/"                      TO WS-NOVA-DATA(06:01).
+     MOVE WS-DATA-COMPLETA(01:04)  TO WS-NOVA-DATA(07:04).
+
+     INSPECT WS-NOVA-DATA REPLACING ALL "/" BY "-" AFTER "16".
+    DISPLAY "Hello world"  WS-NOVA-DATA.
+    STOP RUN.
+END PROGRAM REPLACE_PROG.

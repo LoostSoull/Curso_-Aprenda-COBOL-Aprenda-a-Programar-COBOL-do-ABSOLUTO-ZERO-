@@ -1,0 +1,43 @@
+*>****************************************************************
+*> Author: LUCAS CARDOSO
+*> Date: 18/02/24
+*> Purpose: UTILIZANDO O COMANDO STRING, NA FORMA 1, CRIAMOS MANUALMENTE A STRING E ATRIBUIMOS A VARIAVEL
+*> NA FORMA 2, MOVIMENTAMOS O CONTEUDO LITERAL PARA A STRING E REORGANIZAMOS A ORDEM .
+*> Tectonics: cobc
+*>****************************************************************
+IDENTIFICATION DIVISION.
+PROGRAM-ID. STRING_PROG.
+DATA DIVISION.
+FILE SECTION.
+WORKING-STORAGE SECTION.
+77 WS-CONTEUDO           PIC X(30) VALUE SPACES.
+77 WS-TEXTO              PIC X(40) VALUES SPACES.
+PROCEDURE DIVISION.
+*>*************FORMA1*****************************
+     INITIALISE WS-CONTEUDO
+                WS-TEXTO
+
+     STRING
+     'LUCAS'
+     ' '
+     'CARDOSO'
+     DELIMITED BY SIZE INTO WS-CONTEUDO
+     END-STRING
+
+    DISPLAY WS-CONTEUDO
+
+*>************FORMA2*****************************
+     INITIALISE WS-CONTEUDO
+                WS-TEXTO
+
+     MOVE 'TESTE LUCAS' TO WS-TEXTO
+
+     STRING
+     WS-TEXTO(7:11)
+     WS-TEXTO(1:6)
+     DELIMITED BY SIZE INTO WS-CONTEUDO
+     END-STRING
+
+    DISPLAY WS-TEXTO
+    STOP RUN.
+END PROGRAM STRING_PROG.

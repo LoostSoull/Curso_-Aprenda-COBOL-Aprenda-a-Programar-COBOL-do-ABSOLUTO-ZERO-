@@ -1,0 +1,16 @@
+*>****************************************************************
+*> Author: LUCAS CARDOSO
+*> Date: 15/02/24
+*> Purpose: COMANDOS INSPECT E REPLACE, PARA CONSEGUIRMOS CONTAR QUANTAS REPETÇÕES POSSUIMOS E TAMBEM SUBISTITUIR A PARTIR DE REPETIÇÕES.
+*> Tectonics: cobc
+*>****************************************************************
+IDENTIFICATION DIVISION.
+PROGRAM-ID. YOUR-PROGRAM-NAME.
+DATA DIVISION.
+FILE SECTION.
+WORKING-STORAGE SECTION.
+PROCEDURE DIVISION.
+MAIN-PROCEDURE.
+    DISPLAY "Hello world"
+    STOP RUN.
+END PROGRAM YOUR-PROGRAM-NAME.
