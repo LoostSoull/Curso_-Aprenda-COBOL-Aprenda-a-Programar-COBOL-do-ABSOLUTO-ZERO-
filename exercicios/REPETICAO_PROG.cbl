@@ -1,0 +1,66 @@
+*>****************************************************************
+*> Author: LUCAS CARDOSO
+*> Date: 07/03/24
+*> Purpose: UTILIZANDO REPETICOES EM LOOP,UTILIZANDO UNTIL, REALIZAMOS UM TESTE QUE VAI SE REPETIR ATE QUE A CONDIÇÃO SEJA SATISFEITA.
+*> OBS, PARA UTILIZAR O PERFORM P300 REMOVER O '*>' ASSIM ELE DEIXA DE SER UM COMENTARIO.
+*> NO P500 A DIFERENÇA DO SEGUNDO LOOP FOI PARA EXEMPLIFICAR AS FORMAS DE FAZER, POREM O RESULTA É O MESMO DO P300
+*> P700 MOSTRA UM CODIGO SEMELHANTE AO FOR EM JAVA POR EXEMPLO
+*> Tectonics: cobc
+*>****************************************************************
+IDENTIFICATION DIVISION.
+PROGRAM-ID. REPETICAO_PROG.
+DATA DIVISION.
+FILE SECTION.
+WORKING-STORAGE SECTION.
+
+01 WS-VARIAVEIS.
+   03 WS-COUNT           PIC 99.
+   03 WS-TOT             PIC 99.
+   03 WS-IND             PIC 99.
+PROCEDURE DIVISION.
+
+P100-INICIO.
+     INITIALISE WS-VARIAVEIS
+*>     PERFORM P300-PROCESSA         THRU  P300-PROCESSA-FIM 3 TIMES
+       PERFORM P500-PROCESSA         THRU  P500-PROCESSA-FIM WITH TEST BEFORE UNTIL WS-COUNT =5
+*>     PERFORM P700-PROCESSA
+     PERFORM P900-FIM
+     .
+*>     PERFORM P500-PROCESSA
+
+     P300-PROCESSA.
+          ADD 1                    TO WS-COUNT
+          DISPLAY 'WS-COUNT: '     WS-COUNT     .
+
+*> ------------- SEGUNDO LOOP ------------------
+          PERFORM 3 TIMES
+               ADD 1               TO WS-TOT
+               DISPLAY 'WS-TOT: '  WS-TOT
+               END-PERFORM.
+     P300-PROCESSA-FIM.
+*> ------------- P500 ------------------
+     P500-PROCESSA.
+          ADD 1                    TO WS-COUNT
+          DISPLAY 'WS-COUNT: '     WS-COUNT     .
+
+           MOVE ZEROS              TO WS-TOT
+           PERFORM WITH TEST BEFORE UNTIL WS-TOT = 3
+               ADD 1               TO WS-TOT
+               DISPLAY 'WS-TOT: '  WS-TOT
+               END-PERFORM.
+
+     P500-PROCESSA-FIM.
+
+*>    ----------- P500 ------------------
+     P700-PROCESSA.
+
+           PERFORM VARYING WS-IND FROM 1 BY 1 UNTIL WS-IND GREATER 5
+
+               DISPLAY 'WS-IND: '  WS-IND
+               END-PERFORM.
+
+     P700-PROCESSA-FIM.
+
+    P900-FIM.
+    STOP RUN.
+END PROGRAM REPETICAO_PROG.
